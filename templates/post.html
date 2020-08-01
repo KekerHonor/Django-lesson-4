@@ -1,59 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {margin:0;}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel = "stylesheet" href = "style.css">
+    
 </head>
-<body>
-
-<ul>
-  <li><a class="active" href="http://127.0.0.1:8000/">Main Page</a></li>
-  <li><a href="http://127.0.0.1:8000/post">Post</a></li>
-  <li><a href="http://127.0.0.1:8000/about">About</a></li>
-</ul>
-
-<div style="padding:20px;margin-top:30px">
-  <h1>News</h1>
-  <hr>
-  <div>
-      {% for i in posts %}
-         <h2>{{ i.title }} - {{ i.created }}</h2>
-         <p>{{ i.text }}</p>
+<head>
+    <style>
+    body {margin:0;}
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    
+    li {
+      float: left;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover:not(.active) {
+      background-color: #111;
+    }
+    
+    .active {
+      background-color: #4CAF50;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <ul>
+      <li><a class="active" href="http://127.0.0.1:8000/">Main Page</a></li>
+      {% for i in categories %}
+      <li><a href="{% url 'posts' %}">{{ i.name }}</a></li>
       {% endfor %}
-  </div>
-</div>
+    </ul>
 
-</body>
+    
+    </body>
+    <div id = "div1" style="padding:20px;margin-top:30px">
+        {% for i in posts %}
+          <h3>{{ i.title }} {{ i.created }}</h3>
+          <p>{{ i.text }}</p>
+        {% endfor %}
+    </div>
+
 </html>

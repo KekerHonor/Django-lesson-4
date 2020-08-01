@@ -10,7 +10,7 @@ class Post(models.Model):
         return self.title + " - " + str(self.created)[:10]
 
 class Category(models.Model):
-    name = models.CharField(max_lenght=50)
+    name = models.CharField(max_length=50)
     path = models.CharField(max_length=50)
     created = models.DateTimeField(auto_now_add=True)
 

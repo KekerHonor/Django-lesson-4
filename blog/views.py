@@ -1,14 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from . models import Post
+from . models import Post, Category
 
 def post(request):
-    posts = Post.objects.all()
-    data = {
-        "posts" : posts
+    category_list = Category.objects.all().order_by("name")
+    post_list = Post.objects.all()
+
+    context = {
+        "categories" : category_list,
+        "posts" : post_list
     }
-    return render(request, "post.html", data)
+    return render(request, "post.html", context)
 def index(request):
-    return render(request, "index.html")
+    category_list = Category.objects.all().order_by("name")
+    context = {
+        "categories" : category_list
+    }
+    return render(request, "index.html", context)
 def about(request):
     return render(request, "about.html")
